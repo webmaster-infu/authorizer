@@ -308,6 +308,32 @@ function signInCallback( credentialResponse ) { // jshint ignore:line
 			wp_redirect( Helper::modify_current_url_for_external_login( 'cas' ) ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
 			exit;
 		}
+    if (
+			isset( $_SERVER['QUERY_STRING'] ) &&
+			strpos( $_SERVER['QUERY_STRING'], 'external=wordpress' ) === false && // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+			strpos( $_SERVER['QUERY_STRING'], 'action=logout' ) === false && 
+			strpos( $_SERVER['QUERY_STRING'], 'loggedout=true' ) === false && 
+			array_key_exists( 'cas_auto_login', $auth_settings ) && '1' === $auth_settings['cas_auto_login'] &&
+			array_key_exists( 'oauth2', $auth_settings ) && '1' === $auth_settings['oauth2'] &&
+			( ! array_key_exists( 'ldap', $auth_settings ) || '1' !== $auth_settings['ldap'] ) &&
+			( ! array_key_exists( 'google', $auth_settings ) || '1' !== $auth_settings['google'] ) &&
+			( ! array_key_exists( 'cas', $auth_settings ) || '1' !== $auth_settings['cas'] ) &&
+			array_key_exists( 'advanced_hide_wp_login', $auth_settings ) && '1' === $auth_settings['advanced_hide_wp_login']
+		)
+      wp_redirect( Helper::modify_current_url_for_external_login( 'oauth2' ) );
+    if (
+      isset( $_SERVER['QUERY_STRING'] ) &&
+      strpos( $_SERVER['QUERY_STRING'], 'external=wordpress' ) === false && // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+      strpos( $_SERVER['QUERY_STRING'], 'action=logout' ) === false && 
+      strpos( $_SERVER['QUERY_STRING'], 'loggedout=true' ) == true && 
+      array_key_exists( 'cas_auto_login', $auth_settings ) && '1' === $auth_settings['cas_auto_login'] &&
+      array_key_exists( 'oauth2', $auth_settings ) && '1' === $auth_settings['oauth2'] &&
+      ( ! array_key_exists( 'ldap', $auth_settings ) || '1' !== $auth_settings['ldap'] ) &&
+      ( ! array_key_exists( 'google', $auth_settings ) || '1' !== $auth_settings['google'] ) &&
+      ( ! array_key_exists( 'cas', $auth_settings ) || '1' !== $auth_settings['cas'] ) &&
+      array_key_exists( 'advanced_hide_wp_login', $auth_settings ) && '1' === $auth_settings['advanced_hide_wp_login']
+    )
+      wp_redirect(home_url());
 
 		return $errors;
 	}
