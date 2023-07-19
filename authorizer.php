@@ -2,8 +2,8 @@
 /**
  * Plugin Name:       Authorizer
  * Plugin URI:        https://github.com/webmaster-infu/authorizer
- * Description:       Authorizer limits login attempts, restricts access to specified users, and authenticates against external sources (e.g., OAuth2, Google, LDAP, or CAS).
- * Version:           3.7.1
+ * Description:       Styr inloggningen på sidan, se till att kontrollera updateringar på github!
+ * Version:           3.7.1.1
  * Requires at least: 4.4
  * Requires PHP:      7.4
  * Author:            Paul Ryan <prar@hawaii.edu>
