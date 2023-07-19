@@ -439,7 +439,7 @@ class Authentication extends Singleton {
 				$provider->defaultEndPointVersion = \TheNetworg\OAuth2\Client\Provider\Azure::ENDPOINT_VERSION_2_0;
 
 				$baseGraphUri    = $provider->getRootMicrosoftGraphUri( null );
-				$provider->scope = 'openid profile email offline_access ' . $baseGraphUri . '/User.Read';
+				$provider->scope = 'openid email offline_access ' . $baseGraphUri . '/User.Read';
 			} catch ( \Exception $e ) {
 				// Invalid configuration, so this in not a successful login. Show error
 				// message to user.
@@ -487,7 +487,7 @@ class Authentication extends Singleton {
 
 					$attributes = $user->toArray();
 					$email      = empty( $attributes['email'] ) ? '' : $attributes['email'];
-					$username   = empty( $attributes['preferred_username'] ) ? '' : $attributes['preferred_username'];
+					// $username   = empty( $attributes['preferred_username'] ) ? '' : $attributes['preferred_username'];
 
 					// Attempt to find an email address in the resource owner attributes
 					// if we couldn't find one in the `email` attribute.
