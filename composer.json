@@ -1,7 +1,7 @@
 {
     "name": "uhm-coe/authorizer",
     "description": "Authorizer limits login attempts, restricts access to specified users, and authenticates against external sources (e.g., OAuth2, Google, LDAP, or CAS).",
-    "homepage": "https://github.com/uhm-coe/authorizer",
+    "homepage": "https://github.com/webmaster-infu/authorizer",
     "type": "project",
     "require": {
         "apereo/phpcas": "^1.3",
